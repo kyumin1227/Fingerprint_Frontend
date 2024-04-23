@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import { useEffect } from "react";
+import GoogleLoginButton from "../../components/GoogleLoginButton";
 
 const GoogleLogin = () => {
   const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
@@ -26,6 +27,7 @@ const GoogleLogin = () => {
     <>
       <Box>
         <Button onClick={handleLogin}>구글 로그인</Button>
+        <GoogleLoginButton></GoogleLoginButton>
       </Box>
     </>
   );
