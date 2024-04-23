@@ -1,13 +1,13 @@
 import { Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import "/reset.css";
+import "./assets/reset.css";
 
 function Root() {
   return (
     <>
       <NavBar />
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" disableGutters>
         <Outlet />
       </Container>
     </>
