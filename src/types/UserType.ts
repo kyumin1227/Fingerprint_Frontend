@@ -5,4 +5,5 @@ type UserInfoType = {
   studentNum: string;
   role: string;
   language: string;
+  picture: string;
 };

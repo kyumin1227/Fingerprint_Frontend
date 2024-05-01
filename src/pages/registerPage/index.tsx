@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { stateType } from "../../store";
 import { googleRegister } from "../../api/googleLogin";
 
-// TODO: 하나라도 빈 값이 있는 경우 버튼 클릭 시 요청 반려
+// TODO 하나라도 빈 값이 있는 경우 버튼 클릭 시 요청 반려
 
 const Register = () => {
   const userInfo = useSelector((state: stateType) => state.user);
@@ -49,23 +49,23 @@ const Register = () => {
             </Grid>
             <TextField
               required
-              disabled
               id="email"
               label="Email"
               defaultValue={email}
               fullWidth
               variant="filled"
               sx={{ mb: 2 }}
+              onChange={(e) => (e.currentTarget.value = email)}
             />
             <TextField
               required
-              disabled
               id="name"
               label="Name"
               defaultValue={name}
               fullWidth
               variant="filled"
               sx={{ mb: 2 }}
+              onChange={(e) => (e.currentTarget.value = name)}
             />
             <TextField
               required

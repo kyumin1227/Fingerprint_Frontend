@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginGoogle } from "../store/GoogleAccount";
 import { googleLogin } from "../api/googleLogin";
-import AlertModal from "./AlertModal";
 import { loginUser } from "../store/UserInfo";
 
 const GoogleLoginButton = () => {
