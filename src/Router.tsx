@@ -3,6 +3,7 @@ import Root from "./Root";
 import GoogleLogin from "./pages/loginPage";
 import Home from "./pages/homePage";
 import Register from "./pages/registerPage";
+import Session from "./pages/sessionPage";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "sessions",
+        element: <Session />,
       },
     ],
   },

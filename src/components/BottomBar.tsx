@@ -1,13 +1,23 @@
 import { Grid } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faFlag, faFolder } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const BottomBar = () => {
+  const navigate = useNavigate();
+
+  const handleSession = () => {
+    navigate("/sessions");
+  };
+
+  const handleHome = () => {
+    navigate("/");
+  };
   return (
     <>
       <Grid container height="10vh" bgcolor="#5C95FF">
         <Grid item xs={4} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-          <FontAwesomeIcon icon={faFlag} color="white" fontSize={30} />
+          <FontAwesomeIcon icon={faFlag} color="white" fontSize={30} width="100%" />
         </Grid>
         <Grid
           item
@@ -19,10 +29,10 @@ const BottomBar = () => {
           borderRight={1}
           borderColor={"white"}
         >
-          <FontAwesomeIcon icon={faHouse} color="white" fontSize={30} />
+          <FontAwesomeIcon icon={faHouse} color="white" fontSize={30} width="100%" onClick={handleHome} />
         </Grid>
         <Grid item xs={4} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-          <FontAwesomeIcon icon={faFolder} color="white" fontSize={30} />
+          <FontAwesomeIcon icon={faFolder} color="white" fontSize={30} width="100%" onClick={handleSession} />
         </Grid>
       </Grid>
     </>
