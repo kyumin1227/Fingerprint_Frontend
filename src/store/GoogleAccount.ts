@@ -10,9 +10,14 @@ export const googleSlice = createSlice({
       state.clientId = clientId;
       state.credential = credential;
     },
+    // 로그아웃 또는 초기화 시 호출
+    resetGoogle: (state) => {
+      state.clientId = "";
+      state.credential = "";
+    },
   },
 });
 
-export const { loginGoogle } = googleSlice.actions;
+export const { loginGoogle, resetGoogle } = googleSlice.actions;
 
 export default googleSlice.reducer;

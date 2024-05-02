@@ -1,8 +1,10 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../../store";
-import { googleRegister } from "../../api/googleLogin";
+import { googleLogin, googleRegister } from "../../api/googleLogin";
+import { loginUser } from "../../store/UserInfo";
+import { useNavigate } from "react-router-dom";
 
 // TODO 하나라도 빈 값이 있는 경우 버튼 클릭 시 요청 반려
 
@@ -10,13 +12,26 @@ const Register = () => {
   const userInfo = useSelector((state: stateType) => state.user);
   const google = useSelector((state: stateType) => state.google);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState(userInfo.email);
   const [name, setName] = useState(userInfo.name);
   const [kakao, setKakao] = useState("");
   const [studentNum, setStudentNum] = useState("");
 
   const handleRegister = async () => {
-    const res = await googleRegister(google.credential, email, name, kakao, studentNum);
+    const res: response = await googleRegister(google.credential, email, name, kakao, studentNum);
+
+    if (res.success) {
+      const loginRes: response = await googleLogin(google.credential);
+
+      if (loginRes.success) {
+        dispatch(loginUser(loginRes.data));
+        navigate("/");
+      } else {
+      }
+    }
   };
 
   return (

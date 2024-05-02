@@ -7,22 +7,40 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../store";
+import { useNavigate } from "react-router-dom";
+import { resetGoogle } from "../store/GoogleAccount";
+import { resetUser } from "../store/UserInfo";
 
 export default function AvatarMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const picture = useSelector((state: stateType) => state.user.picture);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    dispatch(resetGoogle());
+    dispatch(resetUser());
+    navigate("/login");
+  };
+
+  const handleSource = () => {
+    window.open("https://github.com/kyumin1227/Fingerprint", "_blank");
+  };
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -81,11 +99,11 @@ export default function AvatarMenu() {
           <Avatar /> My account
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleSource}>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            <GitHubIcon fontSize="small" />
           </ListItemIcon>
-          Add another account
+          View Source Code
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
@@ -93,7 +111,7 @@ export default function AvatarMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

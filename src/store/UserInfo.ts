@@ -11,9 +11,18 @@ export const userSlice = createSlice({
       state.email = email;
       state.picture = picture;
     },
+    // 로그아웃 또는 초기화 시 호출
+    resetUser: (state) => {
+      state.name = "";
+      state.email = "";
+      state.kakao = "";
+      state.picture = "";
+      state.role = "";
+      state.studentNum = "";
+    },
   },
 });
 
-export const { loginUser } = userSlice.actions;
+export const { loginUser, resetUser } = userSlice.actions;
 
 export default userSlice.reducer;
