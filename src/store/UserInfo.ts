@@ -6,10 +6,12 @@ export const userSlice = createSlice({
   reducers: {
     // 로그인 시 호출
     loginUser: (state, action: PayloadAction<UserInfoType>) => {
-      const { name, email, picture } = action.payload;
+      const { name, email, picture, studentNumber, kakao } = action.payload;
       state.name = name;
       state.email = email;
       state.picture = picture;
+      state.kakao = kakao;
+      state.studentNum = studentNumber;
     },
     // 로그아웃 또는 초기화 시 호출
     resetUser: (state) => {

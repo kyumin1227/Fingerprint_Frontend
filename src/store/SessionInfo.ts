@@ -23,7 +23,7 @@ export const sessionSlice = createSlice({
     },
     updateSession: (state, action) => {
       for (let i = 0; i < state.length; i++) {
-        if (state[i].date == action.payload.date) {
+        if (state[i].date == action.payload) {
           if (state[i].sign) {
             state[i].sign = false;
             state[i].people -= 1;
@@ -43,6 +43,6 @@ export const sessionSlice = createSlice({
   },
 });
 
-export const { setSession, resetSession } = sessionSlice.actions;
+export const { setSession, resetSession, updateSession } = sessionSlice.actions;
 
 export default sessionSlice.reducer;

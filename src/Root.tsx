@@ -8,7 +8,7 @@ function Root() {
   return (
     <>
       <NavBar />
-      <Container maxWidth="sm" disableGutters style={{ height: "80vh" }}>
+      <Container disableGutters style={{ height: "80vh" }}>
         <Outlet />
       </Container>
       <BottomBar />
