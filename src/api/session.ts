@@ -8,3 +8,12 @@ export const getSessions = async (stdNum: String) => {
   });
   return res.data;
 };
+
+export const sendApply = async (date: string, studentNum: string, sign: boolean, credential: string) => {
+  const res = await back.post(`/sessions/${date.replace("-", "").replace("-", "")}`, {
+    studentNum,
+    sign,
+    credential,
+  });
+  return res.data;
+};
