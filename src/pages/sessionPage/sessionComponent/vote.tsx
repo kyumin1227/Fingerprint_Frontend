@@ -1,0 +1,130 @@
+import { Button, Container, Grid, IconButton, Typography } from "@mui/material";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import PersonIcon from "@mui/icons-material/Person";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { stateType } from "../../../store";
+import { sendApply } from "../../../api/session";
+import { updateSession } from "../../../store/SessionInfo";
+
+const Vote = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const data = useSelector((state: stateType) => state.session);
+  const { date } = useParams();
+  const index = data.findIndex((item) => item.date == date);
+  const stdNum = useSelector((state: stateType) => state.user.studentNum);
+  const credential = useSelector((state: stateType) => state.google.credential);
+
+  console.log(date);
+  console.log(data);
+
+  const handleLeft = () => {
+    if (index == 0) {
+      return;
+    } else {
+      navigate(`/sessions/${data[index - 1].date}`);
+    }
+  };
+
+  const handleRight = () => {
+    if (index == 6) {
+      return;
+    } else {
+      navigate(`/sessions/${data[index + 1].date}`);
+    }
+  };
+
+  const handleApply = async () => {
+    const res = await sendApply(date ?? "", stdNum, data[index].sign, credential);
+    if (res.success) {
+      dispatch(updateSession(date));
+    }
+  };
+  return (
+    <Container sx={{ backgroundColor: "#D9D9D9", height: "100%", width: "100%" }} disableGutters>
+      <Grid container paddingTop="5%" height="15%">
+        <Grid item xs={2} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+          <IconButton aria-label="delete" size="large" onClick={handleLeft}>
+            <ArrowCircleLeftIcon sx={{ fontSize: 50 }} />
+          </IconButton>
+        </Grid>
+        <Grid item xs={8} display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"}>
+          <Typography variant="h5">
+            {date?.slice(0, 4)}년 {date?.slice(5, 7)}월 {date?.slice(8, 10)}일
+          </Typography>
+          {data[index].isHoliday ? (
+            <Typography variant="h5">공휴일 출석 신청</Typography>
+          ) : (
+            <Typography variant="h5">야간 자율학습 연장 신청</Typography>
+          )}
+        </Grid>
+        <Grid item xs={2} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+          <IconButton aria-label="delete" size="large" onClick={handleRight}>
+            <ArrowCircleRightIcon sx={{ fontSize: 50 }} />
+          </IconButton>
+        </Grid>
+      </Grid>
+      <Grid display={"flex"} justifyContent={"center"} alignItems={"center"} height="45%" flexDirection={"column"}>
+        <PersonIcon sx={{ fontSize: 200 }} />
+        <Typography variant="h3">{data[index].people} / 5</Typography>
+      </Grid>
+      <Grid display={"flex"} justifyContent={"center"} alignItems={"center"} height="20%">
+        {data[index].sign ? (
+          <Button
+            variant="contained"
+            sx={{
+              fontSize: 35,
+              width: 250,
+              height: 120,
+              backgroundColor: "#8B8C89",
+              borderRadius: 20,
+              ":hover": {
+                backgroundColor: "#8B8C89", // 호버 상태일 때의 배경 색상
+              },
+              ":active": {
+                backgroundColor: "#8B8C89", // 클릭 상태일 때의 배경 색상
+              },
+              ":focus": {
+                backgroundColor: "#8B8C89", // 포커스 상태일 때의 배경 색상
+              },
+            }}
+            onClick={handleApply}
+          >
+            신청 취소
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            sx={{
+              fontSize: 35,
+              width: 250,
+              height: 120,
+              backgroundColor: "#F87575",
+              borderRadius: 20,
+              ":hover": {
+                backgroundColor: "#F87575", // 호버 상태일 때의 배경 색상
+              },
+              ":active": {
+                backgroundColor: "#F87575", // 클릭 상태일 때의 배경 색상
+              },
+              ":focus": {
+                backgroundColor: "#F87575", // 포커스 상태일 때의 배경 색상
+              },
+            }}
+            onClick={handleApply}
+          >
+            신청
+          </Button>
+        )}
+      </Grid>
+      <Grid display={"flex"} justifyContent={"center"} alignItems={"center"} height="15%" flexDirection={"column"}>
+        <Typography variant="h6">금일 연장 여부는 5시 이후</Typography>
+        <Typography variant="h6">신청 인원에 한해 카톡으로 발송됩니다.</Typography>
+      </Grid>
+    </Container>
+  );
+};
+
+export default Vote;

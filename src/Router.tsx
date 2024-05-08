@@ -5,6 +5,8 @@ import Home from "./pages/homePage";
 import Register from "./pages/registerPage";
 import Session from "./pages/sessionPage";
 import SessionDate from "./pages/sessionPage/sessionDate";
+import Kakao from "./pages/kakaoPage";
+import AuthPage from "./pages/kakaoPage/authPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,10 @@ const router = createBrowserRouter([
         path: "sessions/:date",
         element: <SessionDate />,
       },
+      {
+        path: "auth",
+        element: <AuthPage />,
+      },
     ],
   },
   {
@@ -32,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/kakao1",
+    element: <Kakao />,
   },
 ]);
 
