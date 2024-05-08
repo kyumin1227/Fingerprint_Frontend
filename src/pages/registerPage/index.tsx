@@ -15,8 +15,8 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState(userInfo.email);
-  const [name, setName] = useState(userInfo.name);
+  const [email] = useState(userInfo.email);
+  const [name] = useState(userInfo.name);
   const [kakao, setKakao] = useState("");
   const [studentNum, setStudentNum] = useState("");
 
