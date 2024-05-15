@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import GoogleLoginButton from "../../components/GoogleLoginButton";
+import GoogleLoginButton2 from "../../components/GoogleLoginButton2";
 
 const GoogleLogin = () => {
   return (
@@ -12,7 +12,7 @@ const GoogleLogin = () => {
           </Typography>
         </Grid>
         <Grid display={"flex"} justifyContent={"center"} marginBottom="30%">
-          <GoogleLoginButton></GoogleLoginButton>
+          <GoogleLoginButton2 />
         </Grid>
       </Grid>
     </Box>

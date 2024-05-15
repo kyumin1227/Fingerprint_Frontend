@@ -6,6 +6,7 @@ import { loginGoogle } from "../store/GoogleAccount";
 import { googleLogin } from "../api/googleLogin";
 import { loginUser } from "../store/UserInfo";
 
+// 구글 로그인 버튼 수동 방식 변경으로 인해 더 이상 사용하지 않음
 const GoogleLoginButton = () => {
   const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
   const navigate = useNavigate();

@@ -7,6 +7,7 @@ import Session from "./pages/sessionPage";
 import SessionDate from "./pages/sessionPage/sessionDate";
 import Kakao from "./pages/kakaoPage";
 import AuthPage from "./pages/kakaoPage/authPage";
+import GoogleCode from "./pages/loginPage/GoogleCode";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/kakao1",
     element: <Kakao />,
+  },
+  {
+    path: "/oauth2/code/google",
+    element: <GoogleCode />,
   },
 ]);
 
