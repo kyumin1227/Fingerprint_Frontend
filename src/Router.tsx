@@ -8,6 +8,7 @@ import SessionDate from "./pages/sessionPage/sessionDate";
 import Kakao from "./pages/kakaoPage";
 import AuthPage from "./pages/kakaoPage/authPage";
 import GoogleCode from "./pages/loginPage/GoogleCode";
+import PrivacyPolicy from "./pages/privacyPage/privacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/oauth2/code/google",
     element: <GoogleCode />,
+  },
+  {
+    path: "/privacy",
+    element: <PrivacyPolicy />,
   },
 ]);
 
