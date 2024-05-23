@@ -8,6 +8,17 @@ import { stateType } from "../../../store";
 import { sendApply } from "../../../api/session";
 import { updateSession } from "../../../store/SessionInfo";
 
+function getKoreanDay(dateString: string) {
+  // 주어진 문자열을 Date 객체로 변환
+  const date = new Date(dateString);
+  // 요일을 가져옴 (0: 일요일, 1: 월요일, ..., 6: 토요일)
+  const day = date.getDay();
+  // 한글 요일 배열
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  // 해당하는 한글 요일 반환
+  return days[day];
+}
+
 const Vote = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -52,7 +63,7 @@ const Vote = () => {
         </Grid>
         <Grid item xs={8} display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"}>
           <Typography variant="h5">
-            {date?.slice(0, 4)}년 {date?.slice(5, 7)}월 {date?.slice(8, 10)}일
+            {date?.slice(0, 4)}년 {date?.slice(5, 7)}월 {date?.slice(8, 10)}일 ({getKoreanDay(date ?? "")})
           </Typography>
           {data[index].isHoliday ? (
             <Typography variant="h5">공휴일 출석 신청</Typography>

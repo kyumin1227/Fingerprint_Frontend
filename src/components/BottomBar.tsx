@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faFlag, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -29,10 +29,14 @@ const BottomBar = () => {
           borderRight={1}
           borderColor={"white"}
         >
-          <FontAwesomeIcon icon={faHouse} color="white" fontSize={30} width="100%" onClick={handleHome} />
+          <Button sx={{ width: "100%", height: "100%" }} onClick={handleHome}>
+            <FontAwesomeIcon icon={faHouse} color="white" fontSize={30} />
+          </Button>
         </Grid>
         <Grid item xs={4} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-          <FontAwesomeIcon icon={faFolder} color="white" fontSize={30} width="100%" onClick={handleSession} />
+          <Button sx={{ width: "100%", height: "100%" }} onClick={handleSession}>
+            <FontAwesomeIcon icon={faFolder} color="white" fontSize={30} />
+          </Button>
         </Grid>
       </Grid>
     </>
