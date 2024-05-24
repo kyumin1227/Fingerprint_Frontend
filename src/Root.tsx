@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import "./assets/reset.css";
 import BottomBar from "./components/BottomBar";
+import AlertModal from "./components/AlertModal";
 
 function Root() {
   return (
@@ -12,6 +13,7 @@ function Root() {
         <Outlet />
       </Container>
       <BottomBar />
+      <AlertModal />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { googleGetToken, googleLogin } from "../../api/googleLogin";
 import { loginUser } from "../../store/UserInfo";
 import { loginGoogle } from "../../store/GoogleAccount";
+import { openAlert } from "../../store/Alert";
 
 const GoogleCode = () => {
   const location = useLocation();
@@ -38,13 +39,16 @@ const GoogleCode = () => {
             dispatch(loginUser(loginRes.data));
             navigate("/register");
           } else {
+            dispatch(openAlert({ isOpen: true, message: loginRes.message }));
             navigate("/login");
           }
         } else {
+          dispatch(openAlert({ isOpen: true, message: "어딘지 몰라" }));
           navigate("/login");
         }
       } catch (error) {
         console.error(error);
+        dispatch(openAlert({ isOpen: true, message: "알수 없는 에러 발생" }));
         navigate("/login");
       }
     };

@@ -8,6 +8,7 @@ import SessionDate from "./pages/sessionPage/sessionDate";
 import Kakao from "./pages/kakaoPage";
 import AuthPage from "./pages/kakaoPage/authPage";
 import GoogleCode from "./pages/loginPage/GoogleCode";
+import AlertModal from "./components/AlertModal";
 
 const router = createBrowserRouter([
   {
@@ -34,19 +35,39 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <GoogleLogin />,
+    element: (
+      <>
+        <GoogleLogin />
+        <AlertModal />
+      </>
+    ),
   },
   {
     path: "/register",
-    element: <Register />,
+    element: (
+      <>
+        <Register />
+        <AlertModal />
+      </>
+    ),
   },
   {
     path: "/kakao1",
-    element: <Kakao />,
+    element: (
+      <>
+        <Kakao />
+        <AlertModal />
+      </>
+    ),
   },
   {
     path: "/oauth2/code/google",
-    element: <GoogleCode />,
+    element: (
+      <>
+        <GoogleCode />
+        <AlertModal />
+      </>
+    ),
   },
 ]);
 
