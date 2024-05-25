@@ -1,7 +1,27 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import GoogleLoginButton2 from "../../components/GoogleLoginButton2";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/UserInfo";
+import { useNavigate } from "react-router-dom";
 
 const GoogleLogin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const guestData: UserInfoType = {
+    name: "Guest",
+    email: "guest@guest",
+    studentNum: "guest",
+    studentNumber: "guest",
+    kakao: "guest",
+    role: "guest",
+    picture: "",
+    language: "",
+  };
+  const handleGuest = () => {
+    dispatch(loginUser(guestData));
+    navigate("/");
+  };
   return (
     <Box height="100vh" width="100%" bgcolor="#5C95FF" display={"flex"} alignItems={"center"} justifyContent={"center"}>
       <Grid>
@@ -11,8 +31,11 @@ const GoogleLogin = () => {
             GSC - FP
           </Typography>
         </Grid>
-        <Grid display={"flex"} justifyContent={"center"} marginBottom="30%">
+        <Grid display={"flex"} justifyContent={"center"} marginBottom="5%">
           <GoogleLoginButton2 />
+        </Grid>
+        <Grid display={"flex"} justifyContent={"center"} marginBottom="30%">
+          <Button onClick={handleGuest}>Guest</Button>
         </Grid>
       </Grid>
     </Box>

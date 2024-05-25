@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../../../store";
 import { sendApply } from "../../../api/session";
 import { updateSession } from "../../../store/SessionInfo";
+import { openAlert } from "../../../store/Alert";
 
 function getKoreanDay(dateString: string) {
   // 주어진 문자열을 Date 객체로 변환
@@ -48,6 +49,10 @@ const Vote = () => {
   };
 
   const handleApply = async () => {
+    if (credential == "") {
+      dispatch(openAlert({ isOpen: true, message: "Guest는 신청 할 수 없습니다." }));
+      return;
+    }
     const res = await sendApply(date ?? "", stdNum, data[index].sign, credential);
     if (res.success) {
       dispatch(updateSession(date));
