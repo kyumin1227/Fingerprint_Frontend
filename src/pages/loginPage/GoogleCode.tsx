@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { googleGetToken, googleLogin } from "../../api/googleLogin";
@@ -21,7 +21,13 @@ const GoogleCode = () => {
       const grant_type = "authorization_code";
 
       try {
-        const res: getTokenType = await googleGetToken(code, client_id, client_secret, redirect_uri, grant_type);
+        const res: getTokenType = (await googleGetToken(
+          code,
+          client_id,
+          client_secret,
+          redirect_uri,
+          grant_type
+        )) as getTokenType;
         console.log(res);
 
         if (res.status === 200) {

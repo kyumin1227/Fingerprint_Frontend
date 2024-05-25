@@ -22,8 +22,11 @@ const Session = () => {
   const date = useSelector((state: stateType) => state.session[0].date);
 
   useEffect(() => {
+    console.log(stdNum, date);
+    console.log("useEffect 실행");
+
     navigate(`/sessions/${date}`);
-  }, [date]);
+  }, [date, navigate]);
 
   return <>Session page</>;
 };

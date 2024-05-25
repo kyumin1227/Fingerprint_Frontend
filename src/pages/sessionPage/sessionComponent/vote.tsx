@@ -136,8 +136,8 @@ const Vote = () => {
         )}
       </Grid>
       <Grid display={"flex"} justifyContent={"center"} alignItems={"center"} height="15%" flexDirection={"column"}>
-        <Typography variant="h6">평일 연장 여부는 당일 5시 이후</Typography>
-        <Typography variant="h6">주말, 공휴일 오픈 여부는 전날 10시</Typography>
+        <Typography variant="h6">평일 연장 여부는 당일 17시 이후</Typography>
+        <Typography variant="h6">주말, 공휴일 오픈 여부는 전날 22시</Typography>
         <Typography variant="h6">신청 인원에 한해 카톡으로 발송됩니다.</Typography>
       </Grid>
     </Container>
