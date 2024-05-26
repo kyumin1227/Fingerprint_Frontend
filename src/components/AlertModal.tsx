@@ -1,6 +1,5 @@
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../store";
 import { closeAlert } from "../store/Alert";
@@ -32,7 +31,9 @@ const AlertModal = () => {
           borderRadius: "5px",
         }}
       >
-        <h2 id="global-alert-modal-title">Alert</h2>
+        <Typography variant="h5" id="global-alert-modal-title">
+          Alert
+        </Typography>
         <p id="global-alert-modal-description">{message}</p>
         <Button onClick={handleClose}>Close</Button>
       </div>

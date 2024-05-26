@@ -9,6 +9,8 @@ import Kakao from "./pages/kakaoPage";
 import AuthPage from "./pages/kakaoPage/authPage";
 import GoogleCode from "./pages/loginPage/GoogleCode";
 import AlertModal from "./components/AlertModal";
+import RootBackground from "./Root_Backgroud";
+import Setting from "./pages/settingPage";
 
 const router = createBrowserRouter([
   {
@@ -34,31 +36,26 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: (
-      <>
-        <GoogleLogin />
-        <AlertModal />
-      </>
-    ),
-  },
-  {
-    path: "/register",
-    element: (
-      <>
-        <Register />
-        <AlertModal />
-      </>
-    ),
-  },
-  {
-    path: "/kakao1",
-    element: (
-      <>
-        <Kakao />
-        <AlertModal />
-      </>
-    ),
+    path: "/",
+    element: <RootBackground />,
+    children: [
+      {
+        path: "login",
+        element: <GoogleLogin />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "kakao1",
+        element: <Kakao />,
+      },
+      {
+        path: "setting",
+        element: <Setting />,
+      },
+    ],
   },
   {
     path: "/oauth2/code/google",

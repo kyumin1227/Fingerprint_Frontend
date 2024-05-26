@@ -49,12 +49,12 @@ const GoogleCode = () => {
             navigate("/login");
           }
         } else {
-          dispatch(openAlert({ isOpen: true, message: "어딘지 몰라" }));
+          dispatch(openAlert({ isOpen: true, message: "로그인 실패: 다시 시도해주세요" }));
           navigate("/login");
         }
       } catch (error) {
         console.error(error);
-        dispatch(openAlert({ isOpen: true, message: "알수 없는 에러 발생" }));
+        dispatch(openAlert({ isOpen: true, message: "로그인 과정에서 에러가 발생하였습니다." }));
         navigate("/login");
       }
     };
