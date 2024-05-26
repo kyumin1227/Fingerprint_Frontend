@@ -10,7 +10,7 @@ import AuthPage from "./pages/kakaoPage/authPage";
 import GoogleCode from "./pages/loginPage/GoogleCode";
 import AlertModal from "./components/AlertModal";
 import RootBackground from "./Root_Backgroud";
-import Setting from "./pages/settingPage";
+import MyInfo from "./pages/infoPage";
 
 const router = createBrowserRouter([
   {
@@ -52,8 +52,8 @@ const router = createBrowserRouter([
         element: <Kakao />,
       },
       {
-        path: "setting",
-        element: <Setting />,
+        path: "myinfo",
+        element: <MyInfo />,
       },
     ],
   },

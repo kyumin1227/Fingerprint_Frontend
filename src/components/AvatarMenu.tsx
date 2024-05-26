@@ -41,6 +41,14 @@ export default function AvatarMenu() {
     window.open("https://github.com/kyumin1227/Fingerprint", "_blank");
   };
 
+  const handleInfo = () => {
+    navigate("/myinfo");
+  };
+
+  const handleRole = () => {
+    navigate("/role");
+  };
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -92,12 +100,12 @@ export default function AvatarMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
+        <MenuItem onClick={handleInfo}>
+          <Avatar /> MyInfo
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        {/* <MenuItem onClick={handleClose}>
           <Avatar /> My account
-        </MenuItem>
+        </MenuItem> */}
         <Divider />
         <MenuItem onClick={handleSource}>
           <ListItemIcon>
@@ -105,11 +113,11 @@ export default function AvatarMenu() {
           </ListItemIcon>
           View Source Code
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleRole}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+          Role Change
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
