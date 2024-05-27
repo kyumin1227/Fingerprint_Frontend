@@ -11,6 +11,7 @@ import GoogleCode from "./pages/loginPage/GoogleCode";
 import AlertModal from "./components/AlertModal";
 import RootBackground from "./Root_Backgroud";
 import MyInfo from "./pages/infoPage";
+import Role from "./pages/rolePage";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "myinfo",
         element: <MyInfo />,
+      },
+      {
+        path: "role",
+        element: <Role />,
       },
     ],
   },

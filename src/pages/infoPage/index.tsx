@@ -93,11 +93,12 @@ const MyInfo = () => {
             }}
           />
         </Box>
-        <Box mt={10} display={"flex"} justifyContent={"flex-end"}>
+        <Box mt={10} display={"flex"} justifyContent={"flex-start"}>
           <Button
             variant="contained"
             sx={{
               height: "60px",
+              width: "48%",
               backgroundColor: "#F87575",
               ":active": {
                 backgroundColor: "#F87575", // 클릭했을 때의 색상
