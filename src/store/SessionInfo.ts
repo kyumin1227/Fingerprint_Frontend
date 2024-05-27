@@ -3,13 +3,13 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 export const sessionSlice = createSlice({
   name: "session",
   initialState: [
-    { date: "", sign: false, people: 0, isHoliday: false },
-    { date: "", sign: false, people: 0, isHoliday: false },
-    { date: "", sign: false, people: 0, isHoliday: false },
-    { date: "", sign: false, people: 0, isHoliday: false },
-    { date: "", sign: false, people: 0, isHoliday: false },
-    { date: "", sign: false, people: 0, isHoliday: false },
-    { date: "", sign: false, people: 0, isHoliday: false },
+    { date: "", sign: false, people: 0, isHoliday: false, isAble: false },
+    { date: "", sign: false, people: 0, isHoliday: false, isAble: false },
+    { date: "", sign: false, people: 0, isHoliday: false, isAble: false },
+    { date: "", sign: false, people: 0, isHoliday: false, isAble: false },
+    { date: "", sign: false, people: 0, isHoliday: false, isAble: false },
+    { date: "", sign: false, people: 0, isHoliday: false, isAble: false },
+    { date: "", sign: false, people: 0, isHoliday: false, isAble: false },
   ],
   reducers: {
     // 전체 세션 변경
@@ -19,6 +19,7 @@ export const sessionSlice = createSlice({
         state[i].sign = action.payload[i].sign;
         state[i].people = action.payload[i].people;
         state[i].isHoliday = action.payload[i].isHoliday;
+        state[i].isAble = action.payload[i].isAble;
       }
     },
     updateSession: (state, action) => {
@@ -37,7 +38,11 @@ export const sessionSlice = createSlice({
     // 전체 세션 초기화
     resetSession: (state) => {
       for (let i = 0; i < state.length; i++) {
-        (state[i].date = ""), (state[i].isHoliday = false), (state[i].people = 0), (state[i].sign = false);
+        (state[i].date = ""),
+          (state[i].isHoliday = false),
+          (state[i].people = 0),
+          (state[i].sign = false),
+          (state[i].isAble = false);
       }
     },
   },

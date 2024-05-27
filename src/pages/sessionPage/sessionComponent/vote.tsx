@@ -26,7 +26,7 @@ const Vote = () => {
   const data = useSelector((state: stateType) => state.session);
   const { date } = useParams();
   const index = data.findIndex((item) => item.date == date);
-  const stdNum = useSelector((state: stateType) => state.user.studentNum);
+  const user = useSelector((state: stateType) => state.user);
   const credential = useSelector((state: stateType) => state.google.credential);
 
   console.log(date);
@@ -53,7 +53,7 @@ const Vote = () => {
       dispatch(openAlert({ isOpen: true, message: "Guest는 신청 할 수 없습니다." }));
       return;
     }
-    const res = await sendApply(date ?? "", stdNum, data[index].sign, credential);
+    const res = await sendApply(date ?? "", user.studentNum, data[index].sign, credential, user.role);
     if (res.success) {
       dispatch(updateSession(date));
     }

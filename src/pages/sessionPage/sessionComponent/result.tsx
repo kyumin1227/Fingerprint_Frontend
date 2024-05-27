@@ -5,6 +5,7 @@ import { Container, Grid, IconButton, Typography } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
+// 한글 요일 받아오는 함수
 function getKoreanDay(dateString: string) {
   // 주어진 문자열을 Date 객체로 변환
   const date = new Date(dateString);
@@ -21,6 +22,7 @@ const Result = () => {
   const data = useSelector((state: stateType) => state.session);
   const index = data.findIndex((item) => item.date == date);
   const navigate = useNavigate();
+
   const handleLeft = () => {
     if (index == 0) {
       return;
@@ -64,24 +66,43 @@ const Result = () => {
             </IconButton>
           </Grid>
         </Grid>
-        {/* TODO 키 담당 학생이 신청했는지 확인 필요 */}
-        {data[index].people >= 5 ? (
-          <>
-            <Grid display={"flex"} justifyContent={"center"} alignItems={"center"}>
-              <Grid>
-                <img src="../resultImage/good_removebg.png" width="100%" />
+
+        {data[index].people >= 5 && data[index].isAble ? (
+          data[index].isHoliday ? (
+            <>
+              <Grid display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                <Grid>
+                  <img src="../resultImage/good_removebg.png" width="100%" />
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid
-              display={"flex"}
-              justifyContent={"center"}
-              alignItems={"center"}
-              height="15%"
-              flexDirection={"column"}
-            >
-              <Typography variant="h6">연장되었습니다</Typography>
-            </Grid>
-          </>
+              <Grid
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                height="15%"
+                flexDirection={"column"}
+              >
+                <Typography variant="h6">연장되었습니다</Typography>
+              </Grid>
+            </>
+          ) : (
+            <>
+              <Grid display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                <Grid>
+                  <img src="../resultImage/good_removebg.png" width="100%" />
+                </Grid>
+              </Grid>
+              <Grid
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                height="15%"
+                flexDirection={"column"}
+              >
+                <Typography variant="h6">교실 열어요</Typography>
+              </Grid>
+            </>
+          )
         ) : (
           <>
             <Grid display={"flex"} justifyContent={"center"} alignItems={"center"}>
