@@ -1,37 +1,21 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { stateType } from "../../store";
-import { googleLogin, googleRegister } from "../../api/googleLogin";
-import { loginUser } from "../../store/UserInfo";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// TODO 하나라도 빈 값이 있는 경우 버튼 클릭 시 요청 반려
-
-const Register = () => {
+const MyInfo = () => {
   const userInfo = useSelector((state: stateType) => state.user);
-  const google = useSelector((state: stateType) => state.google);
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [email] = useState(userInfo.email);
   const [name] = useState(userInfo.name);
-  const [kakao, setKakao] = useState("");
-  const [studentNum, setStudentNum] = useState("");
+  const [kakao, setKakao] = useState(userInfo.kakao);
+  const [studentNum] = useState(userInfo.studentNum);
+  const [role] = useState(userInfo.role);
 
-  const handleRegister = async () => {
-    const res: response = await googleRegister(google.credential, email, name, kakao, studentNum);
-
-    if (res.success) {
-      const loginRes: response = await googleLogin(google.credential);
-
-      if (loginRes.success) {
-        dispatch(loginUser(loginRes.data));
-        navigate("/");
-      } else {
-      }
-    }
+  const handleBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -92,16 +76,29 @@ const Register = () => {
             defaultValue={studentNum}
             fullWidth
             variant="filled"
+            sx={{ mb: 2 }}
             onChange={(e) => {
-              setStudentNum(e.currentTarget.value);
+              e.currentTarget.value = studentNum;
+            }}
+          />
+          <TextField
+            required
+            id="role"
+            label="Role"
+            defaultValue={role}
+            fullWidth
+            variant="filled"
+            onChange={(e) => {
+              e.currentTarget.value = role;
             }}
           />
         </Box>
-        <Box mt={10} display={"flex"} justifyContent={"flex-end"}>
+        <Box mt={10} display={"flex"} justifyContent={"flex-start"}>
           <Button
             variant="contained"
             sx={{
               height: "60px",
+              width: "48%",
               backgroundColor: "#F87575",
               ":active": {
                 backgroundColor: "#F87575", // 클릭했을 때의 색상
@@ -110,9 +107,9 @@ const Register = () => {
                 backgroundColor: "#F87575", // 포커스 시 색상 유지
               },
             }}
-            onClick={handleRegister}
+            onClick={handleBack}
           >
-            Register
+            Back
           </Button>
         </Box>
       </Grid>
@@ -121,4 +118,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default MyInfo;

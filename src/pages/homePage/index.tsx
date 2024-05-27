@@ -8,10 +8,13 @@ const Home = () => {
   const stdNum = useSelector((state: stateType) => state.user.studentNum);
 
   useEffect(() => {
+    console.log(stdNum);
+    console.log("useEffect 실행");
+
     if (stdNum === "") {
       navigate("/login");
     }
-  }, []);
+  }, [navigate, stdNum]);
 
   return <>Homepage</>;
 };

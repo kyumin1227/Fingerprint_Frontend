@@ -8,6 +8,10 @@ import SessionDate from "./pages/sessionPage/sessionDate";
 import Kakao from "./pages/kakaoPage";
 import AuthPage from "./pages/kakaoPage/authPage";
 import GoogleCode from "./pages/loginPage/GoogleCode";
+import AlertModal from "./components/AlertModal";
+import RootBackground from "./Root_Backgroud";
+import MyInfo from "./pages/infoPage";
+import Role from "./pages/rolePage";
 import PrivacyPolicy from "./pages/privacyPage/privacyPolicy";
 
 const router = createBrowserRouter([
@@ -34,20 +38,39 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: <GoogleLogin />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/kakao1",
-    element: <Kakao />,
+    path: "/",
+    element: <RootBackground />,
+    children: [
+      {
+        path: "login",
+        element: <GoogleLogin />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "kakao1",
+        element: <Kakao />,
+      },
+      {
+        path: "myinfo",
+        element: <MyInfo />,
+      },
+      {
+        path: "role",
+        element: <Role />,
+      },
+    ],
   },
   {
     path: "/oauth2/code/google",
-    element: <GoogleCode />,
+    element: (
+      <>
+        <GoogleCode />
+        <AlertModal />
+      </>
+    ),
   },
   {
     path: "/privacy",

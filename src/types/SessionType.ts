@@ -4,5 +4,6 @@ type SessionInfoType = [
     sign: boolean;
     people: number;
     isHoliday: boolean;
+    isAble: boolean;
   }
 ];

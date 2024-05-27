@@ -7,6 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../../../store";
 import { sendApply } from "../../../api/session";
 import { updateSession } from "../../../store/SessionInfo";
+import { openAlert } from "../../../store/Alert";
+
+function getKoreanDay(dateString: string) {
+  // 주어진 문자열을 Date 객체로 변환
+  const date = new Date(dateString);
+  // 요일을 가져옴 (0: 일요일, 1: 월요일, ..., 6: 토요일)
+  const day = date.getDay();
+  // 한글 요일 배열
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  // 해당하는 한글 요일 반환
+  return days[day];
+}
 
 const Vote = () => {
   const navigate = useNavigate();
@@ -14,7 +26,7 @@ const Vote = () => {
   const data = useSelector((state: stateType) => state.session);
   const { date } = useParams();
   const index = data.findIndex((item) => item.date == date);
-  const stdNum = useSelector((state: stateType) => state.user.studentNum);
+  const user = useSelector((state: stateType) => state.user);
   const credential = useSelector((state: stateType) => state.google.credential);
 
   console.log(date);
@@ -37,7 +49,11 @@ const Vote = () => {
   };
 
   const handleApply = async () => {
-    const res = await sendApply(date ?? "", stdNum, data[index].sign, credential);
+    if (credential == "") {
+      dispatch(openAlert({ isOpen: true, message: "Guest는 신청 할 수 없습니다." }));
+      return;
+    }
+    const res = await sendApply(date ?? "", user.studentNum, data[index].sign, credential, user.role);
     if (res.success) {
       dispatch(updateSession(date));
     }
@@ -52,7 +68,7 @@ const Vote = () => {
         </Grid>
         <Grid item xs={8} display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"}>
           <Typography variant="h5">
-            {date?.slice(0, 4)}년 {date?.slice(5, 7)}월 {date?.slice(8, 10)}일
+            {date?.slice(0, 4)}년 {date?.slice(5, 7)}월 {date?.slice(8, 10)}일 ({getKoreanDay(date ?? "")})
           </Typography>
           {data[index].isHoliday ? (
             <Typography variant="h5">공휴일 출석 신청</Typography>
@@ -120,7 +136,8 @@ const Vote = () => {
         )}
       </Grid>
       <Grid display={"flex"} justifyContent={"center"} alignItems={"center"} height="15%" flexDirection={"column"}>
-        <Typography variant="h6">금일 연장 여부는 5시 이후</Typography>
+        <Typography variant="h6">평일 연장 여부는 당일 17시 이후</Typography>
+        <Typography variant="h6">주말, 공휴일 오픈 여부는 전날 22시</Typography>
         <Typography variant="h6">신청 인원에 한해 카톡으로 발송됩니다.</Typography>
       </Grid>
     </Container>

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { googleGetToken, googleLogin } from "../../api/googleLogin";
 import { loginUser } from "../../store/UserInfo";
 import { loginGoogle } from "../../store/GoogleAccount";
+import { openAlert } from "../../store/Alert";
 
 const GoogleCode = () => {
   const location = useLocation();
@@ -44,13 +45,16 @@ const GoogleCode = () => {
             dispatch(loginUser(loginRes.data));
             navigate("/register");
           } else {
+            dispatch(openAlert({ isOpen: true, message: loginRes.message }));
             navigate("/login");
           }
         } else {
+          dispatch(openAlert({ isOpen: true, message: "로그인 실패: 다시 시도해주세요" }));
           navigate("/login");
         }
       } catch (error) {
         console.error(error);
+        dispatch(openAlert({ isOpen: true, message: "로그인 과정에서 에러가 발생하였습니다." }));
         navigate("/login");
       }
     };
