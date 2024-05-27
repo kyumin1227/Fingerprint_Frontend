@@ -12,6 +12,7 @@ import AlertModal from "./components/AlertModal";
 import RootBackground from "./Root_Backgroud";
 import MyInfo from "./pages/infoPage";
 import Role from "./pages/rolePage";
+import PrivacyPolicy from "./pages/privacyPage/privacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         <AlertModal />
       </>
     ),
+  },
+  {
+    path: "/privacy",
+    element: <PrivacyPolicy />,
   },
 ]);
 
