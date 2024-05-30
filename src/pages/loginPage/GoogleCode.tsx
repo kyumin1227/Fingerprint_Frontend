@@ -34,12 +34,13 @@ const GoogleCode = () => {
           console.log(res.data.id_token);
           const clientId = client_id;
           const credential = res.data.id_token;
-          dispatch(loginGoogle({ clientId, credential }));
+          dispatch(loginGoogle({ clientId, credential, loginCheck: true }));
           const loginRes = await googleLogin(res.data.id_token);
           console.log(loginRes);
 
           if (loginRes.success) {
             dispatch(loginUser(loginRes.data));
+            sessionStorage.setItem("credential", credential);
             navigate("/");
           } else if (loginRes.data != null) {
             dispatch(loginUser(loginRes.data));
