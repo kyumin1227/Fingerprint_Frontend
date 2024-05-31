@@ -1,4 +1,4 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faFlag, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
