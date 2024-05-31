@@ -20,19 +20,19 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <Home />,
       },
       {
-        path: "sessions",
+        path: "/sessions",
         element: <Session />,
       },
       {
-        path: "sessions/:date",
+        path: "/sessions/:date",
         element: <SessionDate />,
       },
       {
-        path: "auth",
+        path: "/auth",
         element: <AuthPage />,
       },
     ],
@@ -42,23 +42,23 @@ const router = createBrowserRouter([
     element: <RootBackground />,
     children: [
       {
-        path: "login",
+        path: "/login",
         element: <GoogleLogin />,
       },
       {
-        path: "register",
+        path: "/register",
         element: <Register />,
       },
       {
-        path: "kakao1",
+        path: "/kakao1",
         element: <Kakao />,
       },
       {
-        path: "myinfo",
+        path: "/myinfo",
         element: <MyInfo />,
       },
       {
-        path: "role",
+        path: "/role",
         element: <Role />,
       },
     ],

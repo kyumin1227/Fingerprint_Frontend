@@ -3,7 +3,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginGoogle } from "../store/GoogleAccount";
-import { googleLogin } from "../api/googleLogin";
+import { googleLogin } from "../api/login";
 import { loginUser } from "../store/UserInfo";
 
 // 구글 로그인 버튼 수동 방식 변경으로 인해 더 이상 사용하지 않음
@@ -21,7 +21,7 @@ const GoogleLoginButton = () => {
             console.log(credentialResponse);
             const clientId: string = credentialResponse.clientId!;
             const credential: string = credentialResponse.credential!;
-            dispatch(loginGoogle({ clientId, credential }));
+            dispatch(loginGoogle({ clientId, credential, loginCheck: true }));
             const res: response = await googleLogin(credential);
             console.log(res);
 

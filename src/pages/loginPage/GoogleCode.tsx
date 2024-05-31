@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { googleGetToken, googleLogin } from "../../api/googleLogin";
+import { googleGetToken, googleLogin } from "../../api/login";
 import { loginUser } from "../../store/UserInfo";
 import { loginGoogle } from "../../store/GoogleAccount";
 import { openAlert } from "../../store/Alert";

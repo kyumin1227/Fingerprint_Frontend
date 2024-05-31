@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { googleLogin } from "../api/googleLogin";
+import { googleLogin } from "../api/login";
 import { loginUser } from "../store/UserInfo";
 import { useNavigate } from "react-router-dom";
 import { loginGoogle } from "../store/GoogleAccount";
