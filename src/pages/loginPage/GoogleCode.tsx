@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { googleGetToken, googleLogin } from "../../api/googleLogin";
+import { googleGetToken, googleLogin } from "../../api/login";
 import { loginUser } from "../../store/UserInfo";
 import { loginGoogle } from "../../store/GoogleAccount";
 import { openAlert } from "../../store/Alert";
@@ -34,12 +34,13 @@ const GoogleCode = () => {
           console.log(res.data.id_token);
           const clientId = client_id;
           const credential = res.data.id_token;
-          dispatch(loginGoogle({ clientId, credential }));
+          dispatch(loginGoogle({ clientId, credential, loginCheck: true }));
           const loginRes = await googleLogin(res.data.id_token);
           console.log(loginRes);
 
           if (loginRes.success) {
             dispatch(loginUser(loginRes.data));
+            sessionStorage.setItem("credential", credential);
             navigate("/");
           } else if (loginRes.data != null) {
             dispatch(loginUser(loginRes.data));

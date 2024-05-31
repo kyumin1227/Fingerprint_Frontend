@@ -34,6 +34,7 @@ export default function AvatarMenu() {
   const handleLogout = () => {
     dispatch(resetGoogle());
     dispatch(resetUser());
+    sessionStorage.removeItem("credential");
     navigate("/login");
   };
 

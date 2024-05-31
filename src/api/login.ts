@@ -28,7 +28,15 @@ export const googleRegister = async (
   return res.data;
 };
 
-// 구글 로그인 토큰 요청
+/**
+ * 구글 로그인 토큰 요청
+ * @param code
+ * @param client_id
+ * @param client_secret
+ * @param redirect_uri
+ * @param grant_type
+ * @returns
+ */
 export const googleGetToken = async (
   code: string,
   client_id: string,
@@ -60,4 +68,14 @@ export const googleGetToken = async (
     console.log(error);
     return error;
   }
+};
+
+/**
+ * 카카오톡 토큰 백엔드로 전송
+ * @param redirect_uri
+ * @param code
+ */
+export const kakaoSendToken = async (redirect_uri: string, code: string, studentNumber: string) => {
+  const res = await back.post("/kakao", { redirect_uri, code, studentNumber });
+  return res.data;
 };

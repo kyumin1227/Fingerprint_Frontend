@@ -2,7 +2,7 @@ import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../../store";
-import { googleLogin, googleRegister } from "../../api/googleLogin";
+import { googleLogin, googleRegister } from "../../api/login";
 import { loginUser } from "../../store/UserInfo";
 import { useNavigate } from "react-router-dom";
 

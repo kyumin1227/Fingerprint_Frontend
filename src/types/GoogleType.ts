@@ -1,6 +1,7 @@
 type LoginGoogleType = {
   clientId: string;
   credential: string;
+  loginCheck: boolean;
 };
 
 type getTokenType = {
