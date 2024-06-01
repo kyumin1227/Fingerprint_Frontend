@@ -13,6 +13,17 @@ const StayLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const guestData: UserInfoType = {
+    name: "Guest",
+    email: "guest@guest",
+    studentNum: "guest",
+    studentNumber: "guest",
+    kakao: "guest",
+    role: "guest",
+    picture: "",
+    language: "",
+  };
+
   const credential = sessionStorage.getItem("credential");
 
   useEffect(() => {
@@ -22,6 +33,9 @@ const StayLogin = () => {
       if (credential == null) {
         // 토큰 없는 경우
         navigate("/login");
+      } else if (credential == "guest") {
+        dispatch(loginUser(guestData));
+        dispatch(loginGoogle({ clientId: "", credential, loginCheck: true }));
       } else {
         try {
           const res = await googleLogin(credential);

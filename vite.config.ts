@@ -7,4 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["chunk-WWK3X5TP", "chunk-IJJCU5JN"],
   },
+  base: "/",
 });

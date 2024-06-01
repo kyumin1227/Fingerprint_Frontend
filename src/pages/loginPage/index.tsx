@@ -3,6 +3,7 @@ import GoogleLoginButton2 from "../../components/GoogleLoginButton2";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../store/UserInfo";
 import { useNavigate } from "react-router-dom";
+import { loginGoogle } from "../../store/GoogleAccount";
 
 const GoogleLogin = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const GoogleLogin = () => {
   };
   const handleGuest = () => {
     dispatch(loginUser(guestData));
+    dispatch(loginGoogle({ clientId: "", credential: "guest", loginCheck: true }));
+    sessionStorage.setItem("credential", "guest");
     navigate("/");
   };
   return (
