@@ -8,7 +8,7 @@ import { stateType } from "../../store";
 const AuthPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { studentNumber } = useSelector((state: stateType) => state.user);
+  const { studentNum } = useSelector((state: stateType) => state.user);
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -16,7 +16,7 @@ const AuthPage = () => {
       const code = new URL(window.location.href).searchParams.get("code");
 
       try {
-        const res = await kakaoSendToken(redirect_uri, code || "", studentNumber);
+        const res = await kakaoSendToken(redirect_uri, code || "", studentNum);
         console.log(res);
         // 예를 들어, 응답에 따라 페이지를 리다이렉트하거나 다른 작업을 수행
         if (res.success) {
