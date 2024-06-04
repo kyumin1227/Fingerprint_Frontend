@@ -12,6 +12,8 @@ import AlertModal from "./components/AlertModal";
 import MyInfo from "./pages/infoPage";
 import Role from "./pages/rolePage";
 import PrivacyPolicy from "./pages/privacyPage/privacyPolicy";
+import RootBackground from "./Root_Backgroud";
+import Key from "./pages/keyPage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,16 @@ const router = createBrowserRouter([
       {
         path: "/role",
         element: <Role />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <RootBackground />,
+    children: [
+      {
+        path: "key",
+        element: <Key />,
       },
     ],
   },

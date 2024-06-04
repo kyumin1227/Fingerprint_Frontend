@@ -9,6 +9,7 @@ export type stateType = {
   user: UserInfoType;
   session: SessionInfoType;
   alert: AlertType;
+  key: KeyInfoType;
 };
 
 export default configureStore({
