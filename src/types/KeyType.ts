@@ -4,4 +4,5 @@ type KeyInfoType = {
   subManager: "";
   startTime: "";
   endTime: "";
+  amendDate: "";
 };

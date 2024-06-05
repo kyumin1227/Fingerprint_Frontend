@@ -3,6 +3,7 @@ import googleReducer from "./GoogleAccount.ts";
 import userReducer from "./UserInfo.ts";
 import sessionReducer from "./SessionInfo.ts";
 import alertReducer from "./Alert.ts";
+import keyReducer from "./KeyInfo.ts";
 
 export type stateType = {
   google: LoginGoogleType;
@@ -18,5 +19,6 @@ export default configureStore({
     user: userReducer,
     session: sessionReducer,
     alert: alertReducer,
+    key: keyReducer,
   },
 });
