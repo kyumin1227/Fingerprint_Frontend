@@ -50,7 +50,7 @@ const Key = () => {
       <Grid display={"flex"} flexDirection={"column"} alignItems={"center"}>
         <Calendar />
         <KeyInfo />
-        <Box mt={10} display={"flex"} justifyContent={"space-between"} width="100%">
+        <Box mt={2} display={"flex"} justifyContent={"space-between"} width="100%">
           <Button
             variant="contained"
             sx={{
