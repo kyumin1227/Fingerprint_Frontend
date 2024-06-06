@@ -2,28 +2,38 @@ import { Box, Button, Grid } from "@mui/material";
 import Calendar from "../../components/Calendar";
 import KeyInfo from "../../components/KeyInfo";
 import { useNavigate } from "react-router-dom";
-import { postKeyInfo } from "../../api/key";
+import { getKeyInfo, postKeyInfo } from "../../api/key";
 import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../../store";
 import { openAlert } from "../../store/Alert";
 import { setKeyInfo } from "../../store/KeyInfo";
 
-// TODO 키 정보 보내는 기능 필요
 const Key = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { date, keyStudent, subManager, startTime, endTime } = useSelector((state: stateType) => state.key);
+  const { date, keyStudent, subManager, startTime, endTime, isHoliday } = useSelector((state: stateType) => state.key);
   const amendStudentNumber = useSelector((state: stateType) => state.user.studentNum);
+  const now =
+    new Date().getFullYear() +
+    "-" +
+    String(new Date().getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(new Date().getDate()).padStart(2, "0");
 
-  const handleBack = () => {
+  // 다시 들어왔을 때 현재 날짜의 데이터를 보여줘야 함으로 다른 페이지로 이동할 때 미리 데이터 세팅
+  const handleBack = async () => {
+    const res = await getKeyInfo(now);
+
+    dispatch(setKeyInfo(res.data));
     navigate(-1);
   };
 
+  // 저장
   const handleSave = async () => {
     console.log("amendStudentNumber", amendStudentNumber);
 
     try {
-      const res = await postKeyInfo(date, keyStudent, subManager, startTime, endTime, amendStudentNumber);
+      const res = await postKeyInfo(date, keyStudent, subManager, startTime, endTime, amendStudentNumber, isHoliday);
       console.log(res);
       if (!res.success) {
         dispatch(openAlert({ isOpen: true, message: res.message }));

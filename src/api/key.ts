@@ -18,6 +18,7 @@ export const getKeyInfo = async (date: String) => {
  * @param startTime
  * @param endTime
  * @param amendDate
+ * @param isHoliday
  * @returns
  */
 export const postKeyInfo = async (
@@ -26,7 +27,8 @@ export const postKeyInfo = async (
   subManager: String,
   startTime: String,
   endTime: String,
-  amendStudentNumber: String
+  amendStudentNumber: String,
+  isHoliday: boolean
 ) => {
   const res = await back.post("/key", {
     date,
@@ -35,6 +37,7 @@ export const postKeyInfo = async (
     startTime,
     endTime,
     amendStudentNumber,
+    isHoliday,
   });
   return res.data;
 };

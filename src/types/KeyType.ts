@@ -1,8 +1,9 @@
 type KeyInfoType = {
-  date: "";
-  keyStudent: "";
-  subManager: "";
-  startTime: "";
-  endTime: "";
-  amendDate: "";
+  date: string;
+  keyStudent: string;
+  subManager: string;
+  startTime: string;
+  endTime: string;
+  amendDate: string;
+  isHoliday: boolean;
 };

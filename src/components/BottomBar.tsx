@@ -13,11 +13,18 @@ const BottomBar = () => {
   const handleHome = () => {
     navigate("/");
   };
+
+  const handleKey = () => {
+    navigate("/key");
+  };
+
   return (
     <>
       <Grid container height="10vh" bgcolor="#5C95FF">
         <Grid item xs={4} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-          <FontAwesomeIcon icon={faFlag} color="white" fontSize={30} width="100%" />
+          <Button sx={{ width: "100%", height: "100%" }} onClick={handleKey}>
+            <FontAwesomeIcon icon={faFlag} color="white" fontSize={30} width="100%" />
+          </Button>
         </Grid>
         <Grid
           item
