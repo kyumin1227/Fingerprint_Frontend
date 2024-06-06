@@ -19,6 +19,7 @@ const Key = () => {
     String(new Date().getMonth() + 1).padStart(2, "0") +
     "-" +
     String(new Date().getDate()).padStart(2, "0");
+  const role = useSelector((state: stateType) => state.user.role);
 
   // 다시 들어왔을 때 현재 날짜의 데이터를 보여줘야 함으로 다른 페이지로 이동할 때 미리 데이터 세팅
   const handleBack = async () => {
@@ -31,6 +32,11 @@ const Key = () => {
   // 저장
   const handleSave = async () => {
     console.log("amendStudentNumber", amendStudentNumber);
+
+    if (role === "student" || role === "guest") {
+      dispatch(openAlert({ isOpen: true, message: "권한이 없습니다." }));
+      return;
+    }
 
     try {
       const res = await postKeyInfo(date, keyStudent, subManager, startTime, endTime, amendStudentNumber, isHoliday);
