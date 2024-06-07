@@ -49,7 +49,7 @@ const Vote = () => {
   };
 
   const handleApply = async () => {
-    if (credential == "") {
+    if (credential == "guest") {
       dispatch(openAlert({ isOpen: true, message: "Guest는 신청 할 수 없습니다." }));
       return;
     }
