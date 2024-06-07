@@ -33,7 +33,7 @@ const Key = () => {
   const handleSave = async () => {
     console.log("amendStudentNumber", amendStudentNumber);
 
-    if (role === "student" || role === "guest") {
+    if (role === "Student" || role === "guest") {
       dispatch(openAlert({ isOpen: true, message: "권한이 없습니다." }));
       return;
     }
