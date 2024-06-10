@@ -17,6 +17,8 @@ export const KeySlice = createSlice({
     endTime: "",
     amendDate: "",
     isHoliday: false,
+    keyStudentName: "",
+    subManagerName: "",
   },
   reducers: {
     setKeyInfo: (state, action: PayloadAction<KeyInfoType>) => {
@@ -27,6 +29,8 @@ export const KeySlice = createSlice({
       state.endTime = action.payload.endTime;
       state.amendDate = action.payload.amendDate;
       state.isHoliday = action.payload.isHoliday;
+      state.keyStudentName = action.payload.keyStudentName;
+      state.subManagerName = action.payload.subManagerName;
     },
     setKeyDate: (state, action: PayloadAction<string>) => {
       state.date = action.payload;

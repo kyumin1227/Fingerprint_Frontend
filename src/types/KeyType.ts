@@ -6,4 +6,6 @@ type KeyInfoType = {
   endTime: string;
   amendDate: string;
   isHoliday: boolean;
+  keyStudentName: string;
+  subManagerName: string;
 };
