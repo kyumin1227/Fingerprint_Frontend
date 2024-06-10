@@ -1,10 +1,27 @@
 import { Grid, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { stateType } from "../../store";
+import { useEffect } from "react";
+import { openAlert } from "../../store/Alert";
+import { useNavigate } from "react-router-dom";
 
 const Kakao = () => {
   const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
   const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI; //Redirect URI
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code&scope=talk_message,friends,profile_nickname`;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { role } = useSelector((state: stateType) => state.user);
+
+  useEffect(() => {
+    if (role == "guest") {
+      dispatch(openAlert({ isOpen: true, message: "게스트는 카카오톡 로그인을 이용할 수 없습니다." }));
+      navigate("/");
+    }
+  }, []);
 
   const handleKakao = () => {
     window.location.href = kakaoURL;
