@@ -105,9 +105,9 @@ export default function AvatarMenu() {
         <MenuItem onClick={handleInfo}>
           <Avatar /> MyInfo
         </MenuItem>
-        {/* <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem> */}
+        <Grid display={"flex"} justifyContent={"center"} my={1}>
+          <img src="./kakao/kakao_login_medium_narrow.png" onClick={() => navigate("/kakao1")} />
+        </Grid>
         <Divider />
         <MenuItem onClick={handleSource}>
           <ListItemIcon>
