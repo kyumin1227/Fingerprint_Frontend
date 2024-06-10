@@ -20,8 +20,10 @@ const AuthPage = () => {
         console.log(res);
         // 예를 들어, 응답에 따라 페이지를 리다이렉트하거나 다른 작업을 수행
         if (res.success) {
+          dispatch(openAlert({ isOpen: true, message: "토큰 세팅에 성공하였습니다." }));
           navigate("/"); // 성공시 이동할 경로
         } else {
+          dispatch(openAlert({ isOpen: true, message: "토큰 세팅에 실패하였습니다." }));
           navigate("/kakao1"); // 실패시 이동할 경로
         }
       } catch (error) {
