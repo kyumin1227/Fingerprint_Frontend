@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../store";
 import { setKeyInfo } from "../store/KeyInfo";
 
-// TODO 학번 검색 기능
 const KeyInfo = () => {
   const dispatch = useDispatch();
   const key = useSelector((state: stateType) => state.key);
@@ -62,11 +61,14 @@ const KeyInfo = () => {
           <Typography variant="h5">{seletedDate}</Typography>
           <FormControlLabel control={<Checkbox checked={isHoliday} onChange={handleIsHoliday} />} label="Holiday" />
         </Grid>
+        <Typography variant="h6" mb={1}>
+          열쇠 책임자
+        </Typography>
         <Grid container display={"flex"} justifyContent={"space-between"} alignItems={"center"} mb={2}>
-          <Grid item display={"flex"} justifyContent={"center"} xs={5}>
-            <Typography variant="h6">열쇠 책임자</Typography>
+          <Grid item display={"flex"} justifyContent={"center"} xs={7}>
+            <TextField label="Name" disabled value={key.keyStudentName} />
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={5}>
             <TextField
               label="KeyStudent"
               value={keyStudent}
@@ -76,11 +78,14 @@ const KeyInfo = () => {
             />
           </Grid>
         </Grid>
+        <Typography variant="h6" mb={1}>
+          부 책임자
+        </Typography>
         <Grid container display={"flex"} justifyContent={"space-between"} alignItems={"center"} mb={2}>
-          <Grid item display={"flex"} justifyContent={"center"} xs={5}>
-            <Typography variant="h6">부 책임자</Typography>
+          <Grid item display={"flex"} justifyContent={"center"} xs={7}>
+            <TextField label="Name" disabled value={key.subManagerName} />
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={5}>
             <TextField
               label="SubManager"
               value={subManager}
