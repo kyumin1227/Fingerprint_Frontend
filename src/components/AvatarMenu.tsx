@@ -15,6 +15,7 @@ import { stateType } from "../store";
 import { useNavigate } from "react-router-dom";
 import { resetGoogle } from "../store/GoogleAccount";
 import { resetUser } from "../store/UserInfo";
+import { Grid, Typography } from "@mui/material";
 
 export default function AvatarMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -126,6 +127,9 @@ export default function AvatarMenu() {
           </ListItemIcon>
           Logout
         </MenuItem>
+        <Grid display={"flex"} justifyContent={"center"}>
+          <Typography>v.1.0.0</Typography>
+        </Grid>
       </Menu>
     </React.Fragment>
   );
