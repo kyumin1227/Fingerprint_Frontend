@@ -26,7 +26,17 @@ const SessionDate = () => {
   console.log(date);
   console.log(nowDate);
 
-  return <>{date == nowDate && hours >= 14 ? <Result /> : <Vote />}</>;
+  return (
+    <>
+      {date == nowDate && hours >= 17 ? (
+        <>
+          <Result />
+        </>
+      ) : (
+        <Vote />
+      )}
+    </>
+  );
 };
 
 export default SessionDate;
