@@ -2,12 +2,15 @@ import { Button, Container, Grid, IconButton, Typography } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import PersonIcon from "@mui/icons-material/Person";
+import ReorderIcon from "@mui/icons-material/Reorder";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../../../store";
-import { sendApply } from "../../../api/session";
+import { getUserList, sendApply } from "../../../api/session";
 import { updateSession } from "../../../store/SessionInfo";
 import { openAlert } from "../../../store/Alert";
+import { useEffect, useState } from "react";
+import UserListModal from "./userListModal";
 
 function getKoreanDay(dateString: string) {
   // 주어진 문자열을 Date 객체로 변환
@@ -28,6 +31,21 @@ const Vote = () => {
   const index = data.findIndex((item) => item.date == date);
   const user = useSelector((state: stateType) => state.user);
   const credential = useSelector((state: stateType) => state.google.credential);
+
+  // Modal
+  const [open, setOpen] = useState(false);
+  const [userList, setUserLIst] = useState<{ studentNumber: string; name: string }[]>([]);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    const callUserList = async () => {
+      const res = await getUserList(date || "");
+      setUserLIst(res.data);
+    };
+
+    callUserList();
+  }, [date]);
 
   console.log(date);
   console.log(data);
@@ -84,7 +102,19 @@ const Vote = () => {
       </Grid>
       <Grid display={"flex"} justifyContent={"center"} alignItems={"center"} height="45%" flexDirection={"column"}>
         <PersonIcon sx={{ fontSize: 200 }} />
-        <Typography variant="h3">{data[index].people} / 5</Typography>
+        <Grid display={"flex"} justifyContent={"space-around"} width="210px">
+          <Typography variant="h3">{data[index].people} / 5</Typography>
+          <Button
+            variant="contained"
+            sx={{
+              maxWidth: 10,
+              padding: 0,
+            }}
+            onClick={handleOpen}
+          >
+            <ReorderIcon sx={{ fontSize: 50 }} />
+          </Button>
+        </Grid>
       </Grid>
       <Grid display={"flex"} justifyContent={"center"} alignItems={"center"} height="20%">
         {data[index].sign ? (
@@ -140,6 +170,8 @@ const Vote = () => {
         <Typography variant="h6">주말, 공휴일 오픈 여부는 전날 22시</Typography>
         <Typography variant="h6">신청 인원에 한해 카톡으로 발송됩니다.</Typography>
       </Grid>
+
+      <UserListModal open={open} handleClose={handleClose} date={date || ""} userList={userList} />
     </Container>
   );
 };

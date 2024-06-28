@@ -128,7 +128,7 @@ export default function AvatarMenu() {
           Logout
         </MenuItem>
         <Grid display={"flex"} justifyContent={"center"}>
-          <Typography>v.1.0.0</Typography>
+          <Typography>v.1.1.0</Typography>
         </Grid>
       </Menu>
     </React.Fragment>
